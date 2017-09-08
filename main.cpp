@@ -27,16 +27,31 @@ int main(int argc, char *argv[]) {
             currentArgument = argumentHandler.nextArgument();
         }
 
+        argumentHandler.rewind();
         std::cout << "rest of parameters:" << std::endl;
-    } catch (
-            std::exception &e) { // TODO: use custom exception and print error
-        // to stderr
-        return ERROR;
-    }
 
-    while (argumentHandler.thereIsNextArgument()) {
-        std::cout << currentArgument << std::endl;
-        currentArgument = argumentHandler.nextArgument();
+        while (argumentHandler.thereIsNextArgument()) {
+            currentArgument = argumentHandler.nextArgument();
+            if (currentArgument == "echo") {
+                std::cout << "echo!" << std::endl;
+            } else if (currentArgument == "match") {
+                std::string regex = argumentHandler.nextArgument();
+                std::cout << "match " << regex << "!" << std::endl;
+            } else if (currentArgument == "replace") {
+                std::string pattern = argumentHandler.nextArgument();
+                std::string replacement = argumentHandler.nextArgument();
+                std::cout << "replace " << pattern << " with " << replacement
+                          << "!" << std::endl;
+            } else {
+                return ERROR;
+            }
+            if (argumentHandler.thereIsNextArgument() &&
+                argumentHandler.nextArgument() != "::") {
+                return ERROR;
+            }
+        }
+    } catch (std::exception &e) {
+        return ERROR;
     }
 
     std::cout << "success!" << std::endl;

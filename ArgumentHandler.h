@@ -11,13 +11,13 @@ public:
 
     bool thereIsNextArgument();
 
+    void rewind();
 private:
     std::string _nextArgument();
 
     int argc;
-    int currentArgument;
     char **argv;
-    bool divideByDoubleColon;
+    int currentArgumentPosition;
 };
 
 

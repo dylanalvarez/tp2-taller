@@ -3,28 +3,26 @@
 #include "ArgumentHandler.h"
 
 ArgumentHandler::ArgumentHandler(int argc, char **argv) :
-        argc(argc), argv(argv), divideByDoubleColon(false) {
-    this->currentArgument = 0;
+        argc(argc), argv(argv) {
+    this->currentArgumentPosition = 0;
 }
 
 std::string ArgumentHandler::_nextArgument() {
-    this->currentArgument++;
-    if (this->currentArgument >= this->argc) { throw std::exception(); }
-    return std::string(argv[this->currentArgument]);
+    return std::string(argv[this->currentArgumentPosition + 1]);
 }
 
 std::string ArgumentHandler::nextArgument() {
+    if (this->currentArgumentPosition >= this->argc) { throw std::exception(); }
     std::string argument = this->_nextArgument();
-    if (this->divideByDoubleColon) {
-        while (this->thereIsNextArgument() &&
-               std::string(argv[this->currentArgument + 1]) != "::") {
-            argument += this->nextArgument();
-        }
-        this->currentArgument++;
-    }
+    this->currentArgumentPosition++;
     return argument;
 }
 
 bool ArgumentHandler::thereIsNextArgument() {
-    return this->currentArgument < this->argc - 1;
+    return this->currentArgumentPosition < this->argc - 1;
+}
+
+void ArgumentHandler::rewind() {
+    if (this->currentArgumentPosition == 0) { throw std::exception(); }
+    this->currentArgumentPosition--;
 }
