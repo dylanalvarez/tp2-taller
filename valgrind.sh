@@ -13,9 +13,7 @@ echo "[SERCOM] Error code configured for Valgrind: $valgrindErrorCode." >> $valg
 echo "[SERCOM] Valgrind execution result: $executionResult." >> $valgrindOut
 if [ $executionResult -eq $valgrindErrorCode ]
 then
-    echo "[SERCOM] Valgrind result: Failure." >> $valgrindOut
-    return 1
+    echo "[SERCOM] Valgrind result: Failure."
 else
-    echo "[SERCOM] Valgrind result: Success." >> $valgrindOut
-    return 0
+    echo "[SERCOM] Valgrind result: Success."
 fi
