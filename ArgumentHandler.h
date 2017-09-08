@@ -5,19 +5,20 @@
 
 class ArgumentHandler {
 public:
-    ArgumentHandler(int argc, char **argv);
+  ArgumentHandler(int argc, char **argv);
 
-    std::string nextArgument();
+  std::string nextArgument();
 
-    bool thereIsNextArgument();
+  bool thereIsNextArgument();
 
-    void rewind();
+  void rewind();
+
 private:
-    std::string _nextArgument();
+  std::string _nextArgument();
 
-    int argc;
-    char **argv;
-    int currentArgumentPosition;
+  int argc;
+  char **argv;
+  int currentArgumentPosition;
 };
 
 
