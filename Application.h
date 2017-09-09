@@ -10,9 +10,13 @@ public:
 
   void run();
 
+  ~Application();
+
 private:
   bool debug;
   ArgumentHandler argumentHandler;
+  std::istream *source;
+  std::ostream *destination;
 };
 
 
