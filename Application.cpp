@@ -51,9 +51,9 @@ void Application::_run(){
   }
 }
 
-Application::Application(ArgumentHandler argumentHandler) :
+Application::Application(int argc, char *argv[]) :
   debug(false),
-  argumentHandler(argumentHandler),
+  argumentHandler(ArgumentHandler(argc, argv)),
   source(&std::cin),
   destination(&std::cout) {
   _setOptions();

@@ -6,7 +6,7 @@
 
 class Application {
 public:
-  explicit Application(ArgumentHandler);
+  explicit Application(int argc, char *argv[]);
 
   ~Application();
 
