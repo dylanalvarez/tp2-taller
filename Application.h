@@ -1,8 +1,9 @@
 #ifndef TP2_TALLER_APPLICATION_H
 #define TP2_TALLER_APPLICATION_H
 
-
+#include <vector>
 #include "ArgumentHandler.h"
+#include "Thread.h"
 
 class Application {
 public:
@@ -15,9 +16,12 @@ private:
   ArgumentHandler argumentHandler;
   std::istream *source;
   std::ostream *destination;
+  std::vector<Thread*> threads;
 
   void _setOptions();
-  void _run();
+  void _prepareThreads();
+  void _startThreads();
+  void _joinThreads();
 };
 
 

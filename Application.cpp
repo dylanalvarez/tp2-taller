@@ -1,10 +1,9 @@
 #include <iostream>
 #include <fstream>
-#include <string>
 #include "Application.h"
 #include "Echo.h"
 
-void Application::_setOptions(){
+void Application::_setOptions() {
   std::string currentArgument = argumentHandler.nextArgument();
 
   if (currentArgument == "--debug") {
@@ -27,14 +26,12 @@ void Application::_setOptions(){
   argumentHandler.rewind();
 }
 
-void Application::_run(){
+void Application::_prepareThreads() {
   while (argumentHandler.thereIsNextArgument()) {
     std::string currentArgument = argumentHandler.nextArgument();
 
     if (currentArgument == "echo") {
-      Echo echo = Echo();
-      echo.start();
-      echo.join();
+      threads.push_back(new Echo());
     } else if (currentArgument == "match") {
       std::string regex = argumentHandler.nextArgument();
       std::cout << "match " << regex << "!" << std::endl;
@@ -54,13 +51,28 @@ void Application::_run(){
   }
 }
 
+void Application::_startThreads() {
+  for (auto &thread : threads) {
+    thread->start();
+  }
+}
+
+void Application::_joinThreads() {
+  for (auto &thread : threads) {
+    thread->join();
+    delete thread;
+  }
+}
+
 Application::Application(int argc, char *argv[]) :
   debug(false),
   argumentHandler(ArgumentHandler(argc, argv)),
   source(&std::cin),
   destination(&std::cout) {
   _setOptions();
-  _run();
+  _prepareThreads();
+  _startThreads();
+  _joinThreads();
 }
 
 Application::~Application() {
