@@ -2,6 +2,8 @@
 #include <fstream>
 #include "Application.h"
 #include "Echo.h"
+#include "Match.h"
+#include "Replace.h"
 
 void Application::_setOptions() {
   std::string currentArgument = argumentHandler.nextArgument();
@@ -33,13 +35,10 @@ void Application::_prepareThreads() {
     if (currentArgument == "echo") {
       threads.push_back(new Echo());
     } else if (currentArgument == "match") {
-      std::string regex = argumentHandler.nextArgument();
-      std::cout << "match " << regex << "!" << std::endl;
+      threads.push_back(new Match(argumentHandler.nextArgument()));
     } else if (currentArgument == "replace") {
-      std::string pattern = argumentHandler.nextArgument();
-      std::string replacement = argumentHandler.nextArgument();
-      std::cout << "replace " << pattern << " with " << replacement
-                << "!" << std::endl;
+      threads.push_back(new Replace(argumentHandler.nextArgument(),
+                                    argumentHandler.nextArgument()));
     } else {
       throw std::exception();
     }
