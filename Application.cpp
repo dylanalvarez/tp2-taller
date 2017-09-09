@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include "Application.h"
+#include "Echo.h"
 
 void Application::_setOptions(){
   std::string currentArgument = argumentHandler.nextArgument();
@@ -31,7 +32,9 @@ void Application::_run(){
     std::string currentArgument = argumentHandler.nextArgument();
 
     if (currentArgument == "echo") {
-      std::cout << "echo!" << std::endl;
+      Echo echo = Echo();
+      echo.start();
+      echo.join();
     } else if (currentArgument == "match") {
       std::string regex = argumentHandler.nextArgument();
       std::cout << "match " << regex << "!" << std::endl;
