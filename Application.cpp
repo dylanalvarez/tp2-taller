@@ -3,7 +3,7 @@
 #include <string>
 #include "Application.h"
 
-void Application::run() {
+void Application::_setOptions(){
   std::string currentArgument = argumentHandler.nextArgument();
 
   if (currentArgument == "--debug") {
@@ -24,9 +24,11 @@ void Application::run() {
   }
 
   argumentHandler.rewind();
+}
 
+void Application::_run(){
   while (argumentHandler.thereIsNextArgument()) {
-    currentArgument = argumentHandler.nextArgument();
+    std::string currentArgument = argumentHandler.nextArgument();
 
     if (currentArgument == "echo") {
       std::cout << "echo!" << std::endl;
@@ -53,7 +55,10 @@ Application::Application(ArgumentHandler argumentHandler) :
   debug(false),
   argumentHandler(argumentHandler),
   source(&std::cin),
-  destination(&std::cout) {}
+  destination(&std::cout) {
+  _setOptions();
+  _run();
+}
 
 Application::~Application() {
   if (this->source != &std::cin) {

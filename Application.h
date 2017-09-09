@@ -8,8 +8,6 @@ class Application {
 public:
   explicit Application(ArgumentHandler);
 
-  void run();
-
   ~Application();
 
 private:
@@ -17,6 +15,9 @@ private:
   ArgumentHandler argumentHandler;
   std::istream *source;
   std::ostream *destination;
+
+  void _setOptions();
+  void _run();
 };
 
 
