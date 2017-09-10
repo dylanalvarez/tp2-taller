@@ -1,9 +1,12 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "Application.h"
 #include "Echo.h"
 #include "Match.h"
 #include "Replace.h"
+#include "FileReader.h"
+#include "FileWriter.h"
 
 void Application::_setOptions() {
   std::string currentArgument = argumentHandler.nextArgument();
@@ -29,16 +32,21 @@ void Application::_setOptions() {
 }
 
 void Application::_prepareThreads() {
+  threads.push_back(new FileReader(source));
   while (argumentHandler.thereIsNextArgument()) {
     std::string currentArgument = argumentHandler.nextArgument();
 
     if (currentArgument == "echo") {
-      threads.push_back(new Echo());
+      threads.push_back(new Echo(threads.back()->outputQueue()));
     } else if (currentArgument == "match") {
-      threads.push_back(new Match(argumentHandler.nextArgument()));
+      threads.push_back(new Match(
+        argumentHandler.nextArgument(),
+        threads.back()->outputQueue()));
     } else if (currentArgument == "replace") {
-      threads.push_back(new Replace(argumentHandler.nextArgument(),
-                                    argumentHandler.nextArgument()));
+      threads.push_back(new Replace(
+        argumentHandler.nextArgument(),
+        argumentHandler.nextArgument(),
+        threads.back()->outputQueue()));
     } else {
       throw std::exception();
     }
@@ -48,6 +56,9 @@ void Application::_prepareThreads() {
       throw std::exception();
     }
   }
+  threads.push_back(new FileWriter(
+    threads.back()->outputQueue(),
+    destination));
 }
 
 void Application::_startThreads() {

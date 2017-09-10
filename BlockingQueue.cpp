@@ -1,12 +1,13 @@
 #include <iostream>
+#include <string>
 #include "BlockingQueue.h"
 
-void BlockingQueue::push(std::string &&line) {
+void BlockingQueue::push(std::string line) {
   {
-    std::unique_lock<std::mutex> lock(mutex);
+    std::lock_guard<std::mutex> lock(mutex);
     queue.push(line);
   }
-  conditionVariable.notify_one();
+  conditionVariable.notify_all();
 }
 
 std::string BlockingQueue::pop() {

@@ -3,6 +3,7 @@
 
 
 #include <thread>
+#include "BlockingQueue.h"
 
 class Thread {
 public:
@@ -11,6 +12,8 @@ public:
   void join();
 
   virtual void run() = 0;
+
+  virtual BlockingQueue& outputQueue() = 0;
 
   Thread() = default;
 

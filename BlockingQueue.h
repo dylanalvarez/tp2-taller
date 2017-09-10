@@ -1,5 +1,5 @@
-#ifndef TP2_TALLER_QUEUE_H
-#define TP2_TALLER_QUEUE_H
+#ifndef TP2_TALLER_BLOCKING_QUEUE_H
+#define TP2_TALLER_BLOCKING_QUEUE_H
 
 #include <string>
 #include <queue>
@@ -8,7 +8,7 @@
 
 class BlockingQueue {
 public:
-  void push(std::string &&);
+  void push(std::string);
 
   std::string pop();
 
@@ -29,4 +29,4 @@ private:
 };
 
 
-#endif //TP2_TALLER_QUEUE_H
+#endif //TP2_TALLER_BLOCKING_QUEUE_H
