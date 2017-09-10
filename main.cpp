@@ -1,5 +1,4 @@
 #include <iostream>
-#include "ArgumentHandler.h"
 #include "Application.h"
 
 #define SUCCESS 0

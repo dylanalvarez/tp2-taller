@@ -4,10 +4,11 @@
 #include <vector>
 #include "ArgumentHandler.h"
 #include "Thread.h"
+#include "BlockingQueue.h"
 
 class Application {
 public:
-  explicit Application(int argc, char *argv[]);
+  Application(int argc, char *argv[]);
 
   ~Application();
 
