@@ -13,12 +13,11 @@ void Replace::run() {
   destination.push("");
 }
 
-Replace::Replace(std::string regex, std::string replacement,
+Replace::Replace(const std::string& regex, const std::string& replacement,
                  BlockingQueue& source) :
-  regex(std::move(regex)),
-  replacement(std::move(replacement)),
-  source(source),
-  destination(BlockingQueue()) {}
+  regex(regex),
+  replacement(replacement),
+  source(source) {}
 
 BlockingQueue &Replace::outputQueue() {
   return destination;

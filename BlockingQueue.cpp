@@ -7,7 +7,7 @@ void BlockingQueue::push(std::string line) {
     std::lock_guard<std::mutex> lock(mutex);
     queue.push(line);
   }
-  conditionVariable.notify_all();
+  conditionVariable.notify_one();
 }
 
 std::string BlockingQueue::pop() {
@@ -16,10 +16,7 @@ std::string BlockingQueue::pop() {
     conditionVariable.wait(lock, [this] { return !queue.empty(); });
   }
   std::string &front = queue.front();
+  std::string to_return = front;
   queue.pop();
-  return front;
-}
-
-BlockingQueue::BlockingQueue(BlockingQueue &&other) noexcept {
-  queue = std::move(other.queue);
+  return to_return;
 }

@@ -12,8 +12,7 @@ void Echo::run() {
 }
 
 Echo::Echo(BlockingQueue& source) :
-  source(source),
-  destination(BlockingQueue()) {}
+  source(source) {}
 
 BlockingQueue &Echo::outputQueue() {
   return destination;

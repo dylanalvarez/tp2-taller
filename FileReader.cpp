@@ -3,8 +3,7 @@
 #include "FileReader.h"
 
 FileReader::FileReader(std::istream *source) :
-  source(source),
-  destination(BlockingQueue()) {}
+  source(source) {}
 
 void FileReader::run() {
   std::string line;

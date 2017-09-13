@@ -7,7 +7,7 @@
 
 class Replace : public Thread {
 public:
-  Replace(std::string regex, std::string replacement,
+  Replace(const std::string& regex, const std::string& replacement,
           BlockingQueue& source);
 
   void run() override;

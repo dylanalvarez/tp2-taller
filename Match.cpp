@@ -16,8 +16,7 @@ BlockingQueue &Match::outputQueue() {
   return destination;
 }
 
-Match::Match(std::string regex,
+Match::Match(const std::string& regex,
              BlockingQueue& source) :
-  regex(std::move(regex)),
-  source(source),
-  destination(BlockingQueue()) {}
+  regex(regex),
+  source(source) {}

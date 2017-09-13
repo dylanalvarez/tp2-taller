@@ -18,10 +18,6 @@ public:
 
   BlockingQueue &operator=(const BlockingQueue &) = delete;
 
-  BlockingQueue(BlockingQueue &&) noexcept;
-
-  BlockingQueue &operator=(BlockingQueue &&) = delete;
-
 private:
   std::queue<std::string> queue;
   std::mutex mutex;

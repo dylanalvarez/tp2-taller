@@ -7,7 +7,7 @@
 
 class Match : public Thread {
 public:
-  Match(std::string regex, BlockingQueue& source);
+  Match(const std::string& regex, BlockingQueue& source);
 
   void run() override;
 
