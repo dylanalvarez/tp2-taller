@@ -1,5 +1,5 @@
-#ifndef TP2_TALLER_FILEREADER_H
-#define TP2_TALLER_FILEREADER_H
+#ifndef TP2_TALLER_FILE_READER_H
+#define TP2_TALLER_FILE_READER_H
 
 
 #include "Thread.h"
@@ -19,4 +19,4 @@ private:
 };
 
 
-#endif //TP2_TALLER_FILEREADER_H
+#endif //TP2_TALLER_FILE_READER_H

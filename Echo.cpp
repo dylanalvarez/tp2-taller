@@ -1,5 +1,3 @@
-#include <iostream>
-#include <string>
 #include "Echo.h"
 
 void Echo::run() {
@@ -11,7 +9,7 @@ void Echo::run() {
   destination.push(Line());
 }
 
-Echo::Echo(BlockingQueue& source) :
+Echo::Echo(BlockingQueue &source) :
   source(source) {}
 
 BlockingQueue &Echo::outputQueue() {

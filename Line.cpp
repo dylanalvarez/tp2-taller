@@ -1,4 +1,5 @@
 #include "Line.h"
+#include <string>
 
 Line::Line() : endOfFile(true) {}
 

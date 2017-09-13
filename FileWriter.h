@@ -1,5 +1,5 @@
-#ifndef TP2_TALLER_FILEWRITER_H
-#define TP2_TALLER_FILEWRITER_H
+#ifndef TP2_TALLER_FILE_WRITER_H
+#define TP2_TALLER_FILE_WRITER_H
 
 
 #include "Thread.h"
@@ -18,4 +18,4 @@ private:
   std::ostream *destination;
 };
 
-#endif //TP2_TALLER_FILEWRITER_H
+#endif //TP2_TALLER_FILE_WRITER_H
