@@ -5,12 +5,12 @@
 
 
 void Replace::run() {
-  std::string line = source.pop();
-  while (!line.empty()) {
+  Line line = source.pop();
+  while (!line.isEndOfFile()) {
     destination.push(line);
     line = source.pop();
   }
-  destination.push("");
+  destination.push(Line());
 }
 
 Replace::Replace(const std::string& regex, const std::string& replacement,

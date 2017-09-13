@@ -7,9 +7,9 @@ FileWriter::FileWriter(BlockingQueue& source, std::ostream *destination) :
   destination(destination) {}
 
 void FileWriter::run() {
-  std::string line = source.pop();
-  while (!line.empty()) {
-    *destination << line << std::endl;
+  Line line = source.pop();
+  while (!line.isEndOfFile()) {
+    *destination << line.getContent() << std::endl;
     line = source.pop();
   }
 }

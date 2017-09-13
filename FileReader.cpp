@@ -6,11 +6,11 @@ FileReader::FileReader(std::istream *source) :
   source(source) {}
 
 void FileReader::run() {
-  std::string line;
-  while (*source >> line) {
-    destination.push(line);
+  std::string content;
+  while (*source >> content) {
+    destination.push(Line(content));
   }
-  destination.push("");
+  destination.push(Line());
 }
 
 BlockingQueue &FileReader::outputQueue() {

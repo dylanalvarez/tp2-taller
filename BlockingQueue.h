@@ -5,12 +5,13 @@
 #include <queue>
 #include <mutex>
 #include <condition_variable>
+#include "Line.h"
 
 class BlockingQueue {
 public:
-  void push(std::string);
+  void push(Line);
 
-  std::string pop();
+  Line pop();
 
   BlockingQueue() = default;
 
@@ -19,7 +20,7 @@ public:
   BlockingQueue &operator=(const BlockingQueue &) = delete;
 
 private:
-  std::queue<std::string> queue;
+  std::queue<Line> queue;
   std::mutex mutex;
   std::condition_variable conditionVariable;
 };
