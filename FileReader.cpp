@@ -7,7 +7,7 @@ FileReader::FileReader(std::istream *source) :
 
 void FileReader::run() {
   std::string content;
-  while (*source >> content) {
+  while (getline(*source, content)) {
     destination.push(Line(content));
   }
   destination.push(Line());

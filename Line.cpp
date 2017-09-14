@@ -3,7 +3,7 @@
 
 Line::Line() : endOfFile(true) {}
 
-Line::Line(std::string content) : endOfFile(true), content(content) {}
+Line::Line(std::string content) : endOfFile(false), content(content) {}
 
 bool Line::isEndOfFile() {
   return endOfFile;
