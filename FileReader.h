@@ -7,11 +7,11 @@
 
 class FileReader : public Thread {
 public:
-  explicit FileReader(std::istream* source);
+  explicit FileReader(std::istream *source);
 
   void run() override;
 
-  BlockingQueue& outputQueue() override;
+  BlockingQueue &outputQueue() override;
 
 private:
   std::istream *source;

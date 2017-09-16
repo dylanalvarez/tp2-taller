@@ -2,7 +2,7 @@
 #include <string>
 #include "FileWriter.h"
 
-FileWriter::FileWriter(BlockingQueue& source, std::ostream *destination) :
+FileWriter::FileWriter(BlockingQueue &source, std::ostream *destination) :
   source(source),
   destination(destination) {}
 

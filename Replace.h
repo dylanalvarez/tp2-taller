@@ -7,17 +7,19 @@
 
 class Replace : public Thread {
 public:
-  Replace(const std::string& regex, const std::string& replacement,
-          BlockingQueue& source);
+  Replace(const std::string &regex, const std::string &replacement,
+          BlockingQueue &source);
 
   void run() override;
 
-  BlockingQueue& outputQueue() override;
+  void addLogger(Logger *logger) override;
+
+  BlockingQueue &outputQueue() override;
 
 private:
-  std::regex regex;
+  std::string regex;
   std::string replacement;
-  BlockingQueue& source;
+  BlockingQueue &source;
   BlockingQueue destination;
 };
 

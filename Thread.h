@@ -4,6 +4,7 @@
 
 #include <thread>
 #include "BlockingQueue.h"
+#include "Logger.h"
 
 class Thread {
 public:
@@ -13,9 +14,11 @@ public:
 
   virtual void run() = 0;
 
-  virtual BlockingQueue& outputQueue() = 0;
+  virtual void addLogger(Logger *logger);
 
-  Thread() = default;
+  virtual BlockingQueue &outputQueue() = 0;
+
+  Thread();
 
   Thread(const Thread &) = delete;
 
@@ -27,8 +30,12 @@ public:
 
   virtual ~Thread() = default;
 
-private:
+protected:
+  void _log(const std::string &input, const std::string &output);
+
   std::thread thread;
+  Logger *logger;
+  std::string processID;
 };
 
 

@@ -61,6 +61,12 @@ void Application::_prepareThreads() {
     destination));
 }
 
+void Application::_prepareLogger() {
+  for (auto &thread : threads) {
+    thread->addLogger(&logger);
+  }
+}
+
 void Application::_startThreads() {
   for (auto &thread : threads) {
     thread->start();
@@ -98,6 +104,9 @@ Application::~Application() {
 void Application::operator()() {
   _setOptions();
   _prepareThreads();
+  if (debug) {
+    _prepareLogger();
+  }
   _startThreads();
   _joinThreads();
 }

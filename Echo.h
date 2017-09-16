@@ -7,14 +7,16 @@
 
 class Echo : public Thread {
 public:
-  explicit Echo(BlockingQueue& source);
+  explicit Echo(BlockingQueue &source);
 
   void run() override;
 
-  BlockingQueue& outputQueue() override;
+  void addLogger(Logger *logger) override;
+
+  BlockingQueue &outputQueue() override;
 
 private:
-  BlockingQueue& source;
+  BlockingQueue &source;
   BlockingQueue destination;
 };
 

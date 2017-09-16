@@ -7,14 +7,14 @@
 
 class FileWriter : public Thread {
 public:
-  FileWriter(BlockingQueue& source, std::ostream *destination);
+  FileWriter(BlockingQueue &source, std::ostream *destination);
 
   void run() override;
 
-  BlockingQueue& outputQueue() override;
+  BlockingQueue &outputQueue() override;
 
 private:
-  BlockingQueue& source;
+  BlockingQueue &source;
   std::ostream *destination;
 };
 

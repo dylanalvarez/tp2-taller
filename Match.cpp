@@ -1,14 +1,18 @@
 #include <iostream>
 #include <utility>
-#include <string>
 #include <regex>
 #include "Match.h"
 
 void Match::run() {
   Line line = source.pop();
   while (!line.isEndOfFile()) {
-    if (std::regex_search(line.getContent(), regex)){
+    std::regex regex = std::regex(this->regex, std::regex::ECMAScript);
+    bool itsAMatch = std::regex_search(line.getContent(), regex);
+    if (itsAMatch) {
       destination.push(line);
+    }
+    if (logger) {
+      _log(line.getContent(), itsAMatch ? line.getContent() : "(Filtrado)");
     }
     line = source.pop();
   }
@@ -19,7 +23,12 @@ BlockingQueue &Match::outputQueue() {
   return destination;
 }
 
-Match::Match(const std::string& regex,
-             BlockingQueue& source) :
-  regex(std::regex(regex, std::regex::ECMAScript)),
+Match::Match(const std::string &regex,
+             BlockingQueue &source) :
+  regex(regex),
   source(source) {}
+
+void Match::addLogger(Logger *logger) {
+  Thread::addLogger(logger);
+  this->processID = logger->getProcessID("match");
+}

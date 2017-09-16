@@ -7,15 +7,17 @@
 
 class Match : public Thread {
 public:
-  Match(const std::string& regex, BlockingQueue& source);
+  Match(const std::string &regex, BlockingQueue &source);
 
   void run() override;
 
-  BlockingQueue& outputQueue() override;
+  void addLogger(Logger *logger) override;
+
+  BlockingQueue &outputQueue() override;
 
 private:
-  std::regex regex;
-  BlockingQueue& source;
+  std::string regex;
+  BlockingQueue &source;
   BlockingQueue destination;
 };
 

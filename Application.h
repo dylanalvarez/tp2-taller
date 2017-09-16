@@ -5,6 +5,7 @@
 #include "ArgumentHandler.h"
 #include "Thread.h"
 #include "BlockingQueue.h"
+#include "Logger.h"
 
 class Application {
 public:
@@ -19,11 +20,17 @@ private:
   ArgumentHandler argumentHandler;
   std::istream *source;
   std::ostream *destination;
-  std::vector<Thread*> threads;
+  std::vector<Thread *> threads;
+  Logger logger;
 
   void _setOptions();
+
   void _prepareThreads();
+
+  void _prepareLogger();
+
   void _startThreads();
+
   void _joinThreads();
 };
 
