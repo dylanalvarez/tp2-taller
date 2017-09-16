@@ -14,7 +14,7 @@ public:
   BlockingQueue& outputQueue() override;
 
 private:
-  std::string regex;
+  std::regex regex;
   BlockingQueue& source;
   BlockingQueue destination;
 };
