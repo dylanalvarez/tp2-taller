@@ -13,10 +13,10 @@ void BlockingQueue::push(Line line) {
 Line BlockingQueue::pop() {
   std::unique_lock<std::mutex> lock(mutex);
   while (queue.empty()) {
-    conditionVariable.wait(lock, [this] { return !queue.empty(); });
+    conditionVariable.wait(lock);
   }
   Line &front = queue.front();
-  Line value = front;
+  Line copy = front;
   queue.pop();
-  return value;
+  return copy;
 }

@@ -6,7 +6,7 @@
 
 int main(int argc, char *argv[]) {
   try {
-    Application(argc, argv);
+    Application(argc, argv)();
   } catch (std::exception &e) {
     std::cout << "error";
     return ERROR;

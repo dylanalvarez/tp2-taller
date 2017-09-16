@@ -70,7 +70,6 @@ void Application::_startThreads() {
 void Application::_joinThreads() {
   for (auto &thread : threads) {
     thread->join();
-    delete thread;
   }
 }
 
@@ -78,12 +77,7 @@ Application::Application(int argc, char *argv[]) :
   debug(false),
   argumentHandler(ArgumentHandler(argc, argv)),
   source(&std::cin),
-  destination(&std::cout) {
-  _setOptions();
-  _prepareThreads();
-  _startThreads();
-  _joinThreads();
-}
+  destination(&std::cout) {}
 
 Application::~Application() {
   if (this->source != &std::cin) {
@@ -96,4 +90,14 @@ Application::~Application() {
     to_be_closed->close();
     delete this->destination;
   }
+  for (auto &thread : threads) {
+    delete thread;
+  }
+}
+
+void Application::operator()() {
+  _setOptions();
+  _prepareThreads();
+  _startThreads();
+  _joinThreads();
 }
