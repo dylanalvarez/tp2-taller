@@ -1,3 +1,4 @@
+#include <string>
 #include "Thread.h"
 
 void Thread::start() {

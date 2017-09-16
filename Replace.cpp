@@ -1,6 +1,7 @@
 #include <iostream>
 #include <utility>
 #include <regex>
+#include <string>
 #include "Replace.h"
 
 

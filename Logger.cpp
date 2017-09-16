@@ -1,4 +1,6 @@
 #include <iostream>
+#include <string>
+#include <vector>
 #include "Logger.h"
 
 void Logger::log(const std::string &processID, const std::string &log) {

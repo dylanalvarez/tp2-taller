@@ -3,6 +3,7 @@
 
 
 #include <thread>
+#include <string>
 #include "BlockingQueue.h"
 #include "Logger.h"
 
