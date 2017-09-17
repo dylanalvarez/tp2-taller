@@ -25,6 +25,5 @@ Logger::~Logger() {
     for (auto &log : processLogs[processID]) {
       std::cerr << log << std::endl;
     }
-    std::cerr << std::endl;
   }
 }
