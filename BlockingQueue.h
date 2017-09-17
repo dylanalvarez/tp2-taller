@@ -7,13 +7,17 @@
 #include <condition_variable>
 #include "Line.h"
 
+/*
+ * Queue of Lines. If it's empty, your thread will be left waiting for someone
+ * to push a line into it.
+ */
 class BlockingQueue {
 public:
+  BlockingQueue() = default;
+
   void push(Line);
 
   Line pop();
-
-  BlockingQueue() = default;
 
   BlockingQueue(const BlockingQueue &) = delete;
 
