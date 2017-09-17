@@ -9,6 +9,9 @@ class FileWriter : public Thread {
 public:
   FileWriter(BlockingQueue &source, std::ostream *destination);
 
+  /*
+   * Outputs every line in source to destination
+   */
   void run() override;
 
   BlockingQueue &outputQueue() override;

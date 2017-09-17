@@ -10,6 +10,11 @@ public:
   Replace(const std::string &regex, const std::string &replacement,
           BlockingQueue &source);
 
+  /*
+   * Outputs lines with their content replaced by replacement, where they match
+   * regex (ECMAScript) to its destination queue, until an endOfFile Line
+   * is found
+   */
   void run() override;
 
   void addLogger(Logger *logger) override;

@@ -15,8 +15,15 @@ public:
 
   virtual void run() = 0;
 
+  /*
+   * If a logger is added, each step will be notified to it
+   */
   virtual void addLogger(Logger *logger);
 
+  /*
+   * The thread that is waiting for this instance's output needs a
+   * reference to its output queue
+   */
   virtual BlockingQueue &outputQueue() = 0;
 
   Thread();

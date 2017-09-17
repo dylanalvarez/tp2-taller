@@ -9,6 +9,10 @@ class Echo : public Thread {
 public:
   explicit Echo(BlockingQueue &source);
 
+  /*
+   * Outputs everything queued in the source queue it references to its
+   * destination queue, until an endOfFile Line is found
+   */
   void run() override;
 
   void addLogger(Logger *logger) override;

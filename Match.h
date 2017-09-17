@@ -9,6 +9,10 @@ class Match : public Thread {
 public:
   Match(const std::string &regex, BlockingQueue &source);
 
+  /*
+   * Outputs only lines that match its regex (ECMAScript) at least once to its
+   * destination queue, until an endOfFile Line is found
+   */
   void run() override;
 
   void addLogger(Logger *logger) override;
