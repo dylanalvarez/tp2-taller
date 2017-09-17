@@ -3,6 +3,10 @@
 
 #include <string>
 
+/*
+ * It represents a line in a file, it can have either content or represent
+ * the end of file.
+ */
 class Line {
 public:
   Line();
