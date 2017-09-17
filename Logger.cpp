@@ -21,8 +21,14 @@ std::string Logger::getProcessID(std::string processName) {
 }
 
 Logger::~Logger() {
+  bool first = true;
   for (auto &processID : processIDs) {
     for (auto &log : processLogs[processID]) {
+      if(first){
+        first = false;
+      } else {
+        std::cerr << std::endl;
+      }
       std::cerr << log << std::endl;
     }
   }
