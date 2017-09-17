@@ -7,6 +7,10 @@
 #include "BlockingQueue.h"
 #include "Logger.h"
 
+/*
+ * A functor that is initialized with the program arguments received in the
+ * main function and when run, executes the application
+ */
 class Application {
 public:
   Application(int argc, char *argv[]);

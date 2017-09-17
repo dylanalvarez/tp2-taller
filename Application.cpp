@@ -8,6 +8,39 @@
 #include "FileReader.h"
 #include "FileWriter.h"
 
+
+Application::Application(int argc, char *argv[]) :
+  debug(false),
+  argumentHandler(ArgumentHandler(argc, argv)),
+  source(&std::cin),
+  destination(&std::cout) {}
+
+void Application::operator()() {
+  _setOptions();
+  _prepareThreads();
+  if (debug) {
+    _prepareLogger();
+  }
+  _startThreads();
+  _joinThreads();
+}
+
+Application::~Application() {
+  if (this->source != &std::cin) {
+    auto *to_be_closed = (std::ifstream *) this->source;
+    to_be_closed->close();
+    delete this->source;
+  }
+  if (this->destination != &std::cout) {
+    auto *to_be_closed = (std::ofstream *) this->destination;
+    to_be_closed->close();
+    delete this->destination;
+  }
+  for (auto &thread : threads) {
+    delete thread;
+  }
+}
+
 void Application::_setOptions() {
   std::string currentArgument = argumentHandler.nextArgument();
 
@@ -77,36 +110,4 @@ void Application::_joinThreads() {
   for (auto &thread : threads) {
     thread->join();
   }
-}
-
-Application::Application(int argc, char *argv[]) :
-  debug(false),
-  argumentHandler(ArgumentHandler(argc, argv)),
-  source(&std::cin),
-  destination(&std::cout) {}
-
-Application::~Application() {
-  if (this->source != &std::cin) {
-    auto *to_be_closed = (std::ifstream *) this->source;
-    to_be_closed->close();
-    delete this->source;
-  }
-  if (this->destination != &std::cout) {
-    auto *to_be_closed = (std::ofstream *) this->destination;
-    to_be_closed->close();
-    delete this->destination;
-  }
-  for (auto &thread : threads) {
-    delete thread;
-  }
-}
-
-void Application::operator()() {
-  _setOptions();
-  _prepareThreads();
-  if (debug) {
-    _prepareLogger();
-  }
-  _startThreads();
-  _joinThreads();
 }
