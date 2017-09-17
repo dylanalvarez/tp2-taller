@@ -3,14 +3,26 @@
 
 #include <string>
 
+/*
+ * A class that simplifies program argument retrieval
+ */
 class ArgumentHandler {
 public:
+  /*
+   * Same arguments as the program's main function
+   */
   ArgumentHandler(int argc, char **argv);
 
+  /*
+   * Pre:  thereIsNextArgument()
+   */
   std::string nextArgument();
 
   bool thereIsNextArgument();
 
+  /*
+   * Post: nextArgument() will be the same as the one returned last time
+   */
   void rewind();
 
 private:
